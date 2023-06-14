@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   common:
   - apiVersion: v2
+    created: "2023-06-14T21:05:25.060044974Z"
+    description: Helm library with all the common resources used by the included Charts
+    digest: 8bed6e75bbac6bbfe8da99d898b9635d79d1be88523118f9b7ee35f805dd9cea
+    name: common
+    type: library
+    urls:
+    - https://github.com/jaime-novo/test-helm-charts/releases/download/common-0.1.2/common-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     created: "2023-06-14T20:57:05.990090088Z"
     description: Helm library with all the common resources used by the included Charts
     digest: 71566e0a9a5c16e468f8bdfbc9b4ddfff71583bd02aabbaeb1024d1db4177366
@@ -48,4 +57,4 @@ entries:
     urls:
     - https://github.com/jaime-novo/test-helm-charts/releases/download/cronjob-0.1.0/cronjob-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-14T20:57:06.111266262Z"
+generated: "2023-06-14T21:05:25.060055874Z"
