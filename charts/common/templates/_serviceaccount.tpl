@@ -1,9 +1,5 @@
 {{/*
-  Common serviceaccount definition:
-  {{ include "common.serviceaccount" (
-    dict
-      "Values" "the values scope"
-  ) }}
+  Common serviceaccount definition
 */}}
 {{- define "common.serviceaccount" -}}
 {{- if .Values.serviceAccount.create -}}

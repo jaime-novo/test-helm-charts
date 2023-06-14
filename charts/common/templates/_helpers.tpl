@@ -117,7 +117,9 @@ annotations:
 {{- end }}
 {{- end }}
 
-
+{{/*
+  Standard container definition
+*/}}
 {{- define "common.containerConfig" -}}
 securityContext: {{- toYaml .root.Values.securityContext | nindent 2 }}
 {{- if .container.image.sha }}
@@ -125,7 +127,7 @@ image: "{{ .container.image.repository }}@sha256:{{ .container.image.sha }}"
 {{- else }}
 image: "{{ .container.image.repository }}:{{ .container.image.tag }}"
 {{- end }}
-imagePullPolicy: {{ .root.Values.global.image.pullPolicy }}
+imagePullPolicy: {{ .container.image.pullPolicy | .root.Values.global.image.pullPolicy | default "IfNotPresent" | quote }}
 {{- if not ( empty .container.env ) }}
 env:
   {{- $configMapNameOverride := .root.Values.global.configMapNameOverride }}
@@ -133,13 +135,13 @@ env:
   {{- range $name, $value := .container.env }}
     {{- $order := int ( default 0 $value.order ) -}}
     {{- if ( le $order 0 ) }}
-      {{- include "common.oneEnv" ( dict "root" $root "name" $name "value" $value "configMapNameOverride" $configMapNameOverride ) | indent 2 -}}
+      {{- include "common.envVars" ( dict "root" $root "name" $name "value" $value "configMapNameOverride" $configMapNameOverride ) | indent 2 -}}
     {{- end }}
   {{- end }}
   {{- range $name, $value := .container.env }}
     {{- $order := int ( default 0 $value.order ) -}}
     {{- if ( gt $order 0 ) }}
-      {{- include "common.oneEnv" ( dict "root" $root "name" $name "value" $value "configMapNameOverride" $configMapNameOverride ) | indent 2 -}}
+      {{- include "common.envVars" ( dict "root" $root "name" $name "value" $value "configMapNameOverride" $configMapNameOverride ) | indent 2 -}}
     {{- end }}
   {{- end }}
 {{- end }}
@@ -147,8 +149,10 @@ terminationMessagePolicy: FallbackToLogsOnError
 resources: {{- toYaml .container.resources | nindent 2 }}
 {{- end }}
 
-
-{{- define "common.oneEnv" }}
+{{/*
+  Environment variables definition
+*/}}
+{{- define "common.envVars" }}
 {{- if eq ( default "value" .value.type ) "value" }}
 - name: {{ .name | quote }}
   {{- dict "value" .value.value | toYaml | nindent 2 }}
