@@ -1,6 +1,7 @@
 global:
   image:
     pullSecrets: []
+    pullPolicy: IfNotPresent
   # ConfigMap or secret from env name override
   configMapNameOverride: {}
 

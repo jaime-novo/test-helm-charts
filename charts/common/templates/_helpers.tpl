@@ -127,7 +127,11 @@ image: "{{ .container.image.repository }}@sha256:{{ .container.image.sha }}"
 {{- else }}
 image: "{{ .container.image.repository }}:{{ .container.image.tag }}"
 {{- end }}
-imagePullPolicy: {{ default .container.image.pullPolicy .root.Values.global.image.pullPolicy | quote }}
+{{- if .container.image.pullPolicy }}
+imagePullPolicy: {{ .container.image.pullPolicy }}
+{{- else }}
+imagePullPolicy: {{ .root.Values.global.image.pullPolicy }}
+{{- end }}
 {{- if not ( empty .container.env ) }}
 env:
   {{- $configMapNameOverride := .root.Values.global.configMapNameOverride }}
