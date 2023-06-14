@@ -2,6 +2,15 @@ apiVersion: v1
 entries:
   common:
   - apiVersion: v2
+    created: "2023-06-14T20:57:05.990090088Z"
+    description: Helm library with all the common resources used by the included Charts
+    digest: 71566e0a9a5c16e468f8bdfbc9b4ddfff71583bd02aabbaeb1024d1db4177366
+    name: common
+    type: library
+    urls:
+    - https://github.com/jaime-novo/test-helm-charts/releases/download/common-0.1.1/common-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
     created: "2023-06-14T19:34:09.186728059Z"
     description: Helm library with all the common resources used by the included Charts
     digest: ebd0629f38858ab56542e451d449c53baebc422123a362f768a3fe03402417ea
@@ -11,6 +20,20 @@ entries:
     - https://github.com/jaime-novo/test-helm-charts/releases/download/common-0.1.0/common-0.1.0.tgz
     version: 0.1.0
   cronjob:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-06-14T20:57:06.111253761Z"
+    dependencies:
+    - name: common
+      repository: file://../common
+      version: '*'
+    description: A Helm chart for creating Kubernetes CronJobs
+    digest: a93fcc65ce548d2c1ca52ebf82e157ad7ec08c66e3d724434de6b455b105e848
+    icon: file://icon.svg
+    name: cronjob
+    urls:
+    - https://github.com/jaime-novo/test-helm-charts/releases/download/cronjob-0.1.1/cronjob-0.1.1.tgz
+    version: 0.1.1
   - apiVersion: v2
     appVersion: 1.0.0
     created: "2023-06-14T19:34:09.358587376Z"
@@ -25,4 +48,4 @@ entries:
     urls:
     - https://github.com/jaime-novo/test-helm-charts/releases/download/cronjob-0.1.0/cronjob-0.1.0.tgz
     version: 0.1.0
-generated: "2023-06-14T19:34:09.358591776Z"
+generated: "2023-06-14T20:57:06.111266262Z"
