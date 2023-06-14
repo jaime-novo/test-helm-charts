@@ -4,4 +4,4 @@ description: Helm library with all the common resources used by the included Cha
 
 type: library
 
-version: 0.1.1
+version: 0.1.2
